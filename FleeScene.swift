@@ -86,7 +86,9 @@ final class FleeScene: GameScene
     {
         guard let playerPosition = self.player?.agent?.position,
               let enemyPosition = self.enemy?.agent?.position else { return }
-        let distance = vector_distance(playerPosition, enemyPosition)
+        let glkPlayerPosition = GLKVector2(v: (playerPosition.x, playerPosition.y))
+        let glkEnemyPosition = GLKVector2(v: (enemyPosition.x, enemyPosition.y))
+        let distance = GLKVector2Distance(glkPlayerPosition, glkEnemyPosition)
         let maxDistance: Float = 200.0
         self.isFleeing = distance < maxDistance
         super.update(currentTime)
